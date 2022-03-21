@@ -1,7 +1,18 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { startLogout } from '../../actions/auth';
+import { authReducer } from '../../reducers/authReducer';
 import JournalEntries from './JournalEntries'
 
 const Sidebar = () => {
+
+    const dispatch = useDispatch(authReducer);
+
+    const handleLogout = () => {
+        console.log("click");
+        dispatch(startLogout());
+    };
+
     return (
         <aside className="journal__sidebar">
             <div className="journal__sidebar-navbar mt-5">
@@ -10,7 +21,7 @@ const Sidebar = () => {
                     <span> Arnau</span>
                 </h3>
 
-                <button className="btn">Log Out</button>
+                <button className="btn" onClick={handleLogout}>Log Out</button>
             </div>
 
             <div className="journal__new-entry">

@@ -18,16 +18,22 @@ export const AppRouter = () => {
   const dispatch = useDispatch();
 
   const [checking, setChecking] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-
     firebase.auth().onAuthStateChanged((user) => {
+
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setChecking(false);
+
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+        setChecking(false);
       }
     })
-  }, [dispatch, setChecking]);
+  }, [dispatch, setChecking, setIsLoggedIn]);
 
   if (checking) {
     return (<h1>Loading...</h1>)
@@ -36,8 +42,17 @@ export const AppRouter = () => {
   return (
     <Router >
       <Switch>
-        <Route path="/auth" component={AuthRouter}></Route>
+        {/* <Route path="/auth" component={AuthRouter}></Route>
         <Route exact path="/" component={JournalScreen}></Route>
+
+        <Redirect to="/auth/login" /> */}
+        {
+          isLoggedIn ? (
+            <Route path="/" component={JournalScreen}></Route>
+          ) : (
+            <Route path="/auth" component={AuthRouter}></Route>
+          )
+        }
 
         <Redirect to="/auth/login" />
 
