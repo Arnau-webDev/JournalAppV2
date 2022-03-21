@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import validator from 'validator';
 import { startRegisterWithEmailPassword } from '../../actions/auth';
@@ -32,7 +33,6 @@ const RegisterScreen = () => {
     e.preventDefault();
 
     if (isFormValid()) {
-      console.log("correcto");
       dispatch(startRegisterWithEmailPassword(name, email, password));
     }
   };
@@ -40,25 +40,31 @@ const RegisterScreen = () => {
   const isFormValid = () => {
 
     if (name.trim().length === 0) {
-      console.log("Name is required");
       dispatch(setError("Name is required"));
+      Swal.fire("Error", "Name is required", "error");
 
       return false;
     } else if (!validator.isEmail(email)) {
       dispatch(setError("Email not valid"));
+      Swal.fire("Error", "Email not valid", "error");
 
       return false;
     }
     else if (password.trim().length === 0) {
       dispatch(setError("Password is required"));
+      Swal.fire("Error", "Password is required", "error");
+
       return false;
     }
     else if (password.trim().length < 6) {
       dispatch(setError("Password should be at least 6 characters"));
+      Swal.fire("Error", "Password should be at least 6 characters", "error");
+
       return false;
     }
     else if (password !== password2) {
       dispatch(setError("Passwords don't match"));
+      Swal.fire("Error", "Passwords don't match", "error");
 
       return false;
     }
@@ -73,14 +79,6 @@ const RegisterScreen = () => {
       <h3 className='auth__title'>Register</h3>
 
       <form onSubmit={handleRegister}>
-
-        {
-          msgError !== null && (
-            <div className='auth__alert-error'>
-              {msgError}
-            </div>
-          )
-        }
 
         <input
           type="text"
