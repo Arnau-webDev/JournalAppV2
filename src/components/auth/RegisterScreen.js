@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import validator from 'validator';
+import { startRegisterWithEmailPassword } from '../../actions/auth';
 import { removeError, setError } from '../../actions/ui';
 import { uiReducer } from '../../reducers/uiReducer';
 
@@ -14,8 +15,8 @@ const RegisterScreen = () => {
   const [formValues, setFormValues] = useState({
     name: "journal2User",
     email: "journal2@gmail.com",
-    password: "12345",
-    password2: "12345"
+    password: "123456",
+    password2: "123456"
   });
 
   const { name, email, password, password2 } = formValues;
@@ -29,10 +30,10 @@ const RegisterScreen = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(formValues);
 
     if (isFormValid()) {
       console.log("correcto");
+      dispatch(startRegisterWithEmailPassword(name, email, password));
     }
   };
 
@@ -50,6 +51,10 @@ const RegisterScreen = () => {
     }
     else if (password.trim().length === 0) {
       dispatch(setError("Password is required"));
+      return false;
+    }
+    else if (password.trim().length < 6) {
+      dispatch(setError("Password should be at least 6 characters"));
       return false;
     }
     else if (password !== password2) {

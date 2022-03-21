@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
 
 const LoginScreen = () => {
 
   const dispatch = useDispatch();
+  const { loading } = useSelector(state => state.ui);
 
   const [formValues, setFormValues] = useState({
-    email: "arnauma1@gmail.com",
-    password: 12345
+    email: "journal2@gmail.com",
+    password: 123456
   });
 
   const { email, password } = formValues;
@@ -23,8 +24,7 @@ const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(email, password);
-    dispatch(startLoginEmailPassword(email, password));
+    dispatch(startLoginEmailPassword(email, password.toString()));
   };
 
   const handleGoogleSignIn = () => {
@@ -54,7 +54,7 @@ const LoginScreen = () => {
           value={password}
         />
 
-        <button className='btn btn-primary btn-block' type="submit">Login</button>
+        <button className='btn btn-primary btn-block' type="submit" disabled={loading}>Login</button>
 
         <div className='auth__social-media'>
           <p>Login with social media</p>
