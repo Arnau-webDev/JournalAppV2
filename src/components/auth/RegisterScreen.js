@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import validator from 'validator';
+import { removeError, setError } from '../../actions/ui';
+import { uiReducer } from '../../reducers/uiReducer';
 
 const RegisterScreen = () => {
 
+  const dispatch = useDispatch(uiReducer);
+  const { msgError } = useSelector(state => state.ui);
+
   const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    password: "",
-    password2: ""
+    name: "journal2User",
+    email: "journal2@gmail.com",
+    password: "12345",
+    password2: "12345"
   });
 
   const { name, email, password, password2 } = formValues;
@@ -34,19 +40,25 @@ const RegisterScreen = () => {
 
     if (name.trim().length === 0) {
       console.log("Name is required");
+      dispatch(setError("Name is required"));
 
       return false;
     } else if (!validator.isEmail(email)) {
-      console.log("Email not valid");
+      dispatch(setError("Email not valid"));
 
       return false;
-    } else if (password !== password2) {
-      console.log("Passwords don't match");
+    }
+    else if (password.trim().length === 0) {
+      dispatch(setError("Password is required"));
+      return false;
+    }
+    else if (password !== password2) {
+      dispatch(setError("Passwords don't match"));
 
       return false;
     }
 
-
+    dispatch(removeError());
     return true;
   }
 
@@ -57,9 +69,13 @@ const RegisterScreen = () => {
 
       <form onSubmit={handleRegister}>
 
-        <div className='auth__alert-error'>
-          Hola payo
-        </div>
+        {
+          msgError !== null && (
+            <div className='auth__alert-error'>
+              {msgError}
+            </div>
+          )
+        }
 
         <input
           type="text"
