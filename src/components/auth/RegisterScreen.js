@@ -73,7 +73,6 @@ const RegisterScreen = () => {
     return true;
   }
 
-
   return (
     <>
       <h3 className='auth__title'>Register</h3>
