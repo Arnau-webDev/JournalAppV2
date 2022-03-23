@@ -1,26 +1,36 @@
-import React from 'react'
+import React from 'react';
+import moment from 'moment';
 
-const JournalEntry = () => {
+const JournalEntry = ({ id, title, body, date, url }) => {
+
+    const noteDate = moment(date);
+    console.log(noteDate);
+
+    // console.log(id, title, body, date, url);
     return (
         <div className="journal__entry">
-            <div
-                className="journal__entry-picture"
-                style={{
-                    backgroudSize: "Cover",
-                    backgroundImage: "url(https://www.akamai.com/site/im-demo/perceptual-standard.jpg?imbypass=true)",
-                    backgroundPosition: "center"
-                }}
-            >
-            </div>
+            {
+                url !== undefined && (
+                    <div
+                        className="journal__entry-picture"
+                        style={{
+                            backgroudSize: "Cover",
+                            backgroundImage: `url(${url})`,
+                            backgroundPosition: "center"
+                        }}
+                    >
+                    </div>
+                )
+            }
 
             <div className="journal__entry-body">
-                <p className='journal__entry-title'>Un nuevo día</p>
-                <p className='journal__entry-content'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, quidem?</p>
+                <p className='journal__entry-title'>{title}</p>
+                <p className='journal__entry-content'>{body}</p>
             </div>
 
             <div className="journal__entry-date-box">
-                <span>Monday</span>
-                <h4>28</h4>
+                <span>{noteDate.format("dddd")}</span>
+                <h4>{noteDate.format("Do")}</h4>
             </div>
         </div>
     )

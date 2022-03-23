@@ -11,7 +11,7 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const reducers = combineReducers({
     auth: authReducer,
     ui: uiReducer,
-    notes: notesReducer
+    notesInfo: notesReducer
 });
 
 export const store = createStore(
