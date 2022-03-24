@@ -9,7 +9,7 @@ const NoteScreen = () => {
     const { activeNote } = useSelector(state => state.notesInfo);
 
     const [formValues, setFormValues] = useState(activeNote);
-    const { title, url, body } = formValues;
+    const { title, body } = formValues;
 
     const activeId = useRef(activeNote.id);
 
@@ -56,9 +56,9 @@ const NoteScreen = () => {
                     value={body}
                 ></textarea>
 
-                {url && (
+                {activeNote.url && (
                     <div className="notes__image">
-                        <img src={url} alt="landscape" />
+                        <img src={activeNote.url} alt="landscape" />
                     </div>
                 )}
             </div>

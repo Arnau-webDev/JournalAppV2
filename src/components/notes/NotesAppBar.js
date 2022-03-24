@@ -8,12 +8,10 @@ const NotesAppBar = () => {
     const { activeNote } = useSelector(state => state.notesInfo);
 
     const handleSaveNote = () => {
-        console.log("hadasd")
         dispatch(startSaveNote(activeNote));
     };
 
     const handlePictureUpload = () => {
-        console.log("picture");
         document.querySelector("#fileSelector").click();
     };
 
@@ -39,4 +37,4 @@ const NotesAppBar = () => {
     )
 }
 
-export default NotesAppBar
+export default NotesAppBar;
