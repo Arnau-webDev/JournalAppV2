@@ -32,7 +32,7 @@ const LoginScreen = () => {
   }
 
   return (
-    <>
+    <div className="animate__animated animate__fadeIn animate__faster">
       <h3 className='auth__title'>Login</h3>
 
       <form onSubmit={handleLogin}>
@@ -71,7 +71,7 @@ const LoginScreen = () => {
         <Link className='link mt-5' to="/auth/register">Create New Account</Link>
       </form>
 
-    </>
+    </div>
   )
 }
 

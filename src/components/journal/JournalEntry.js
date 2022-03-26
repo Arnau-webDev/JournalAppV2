@@ -20,9 +20,8 @@ const JournalEntry = ({ id, title, body, date, url }) => {
         dispatch(activeNote(id, note));
     };
 
-    // console.log(id, title, body, date, url);
     return (
-        <div className="journal__entry" onClick={handleSetActiveNote}>
+        <div className="journal__entry animate__animated animate__backInLeft animate__faster" onClick={handleSetActiveNote}>
             {
                 url !== undefined && (
                     <div

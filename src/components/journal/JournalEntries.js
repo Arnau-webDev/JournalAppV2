@@ -8,8 +8,11 @@ const JournalEntries = () => {
 
     return (
         <div className='journal__entries'>
-            {
-                notes.map((note) => {
+            {notes
+                .sort((a, b) => {
+                    return a.date > b.date ? -1 : 1;
+                })
+                .map((note) => {
                     return <JournalEntry key={note.id} {...note} />
                 })
             }
