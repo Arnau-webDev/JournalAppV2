@@ -1,8 +1,9 @@
 import { types } from "../types/types";
 import { firebase, googleAuthProvider } from '../firebase/firebase-config'
 import { uiFinishLoading, uiStartLoading } from "./ui";
+import { notesLogoutCleaning } from "./notes";
 
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 export const login = (uid, displayName) => {
     return {
@@ -62,6 +63,7 @@ export const startLogout = () => {
         await firebase.auth().signOut();
 
         dispatch(logOut());
+        dispatch(notesLogoutCleaning());
     }
 };
 
