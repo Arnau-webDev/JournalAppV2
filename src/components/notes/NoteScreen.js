@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import NotesAppBar from './NotesAppBar';
-import { activeNote as activeNoteAction } from '../../actions/notes';
+import { activeNote as activeNoteAction, startDeleteNote } from '../../actions/notes';
 
 const NoteScreen = () => {
 
@@ -33,6 +33,10 @@ const NoteScreen = () => {
         })
     };
 
+    const handleDeleteNote = () => {
+        dispatch(startDeleteNote(activeNote.id));
+    }
+
     return (
         <div className="notes__main-content">
             <NotesAppBar />
@@ -62,8 +66,10 @@ const NoteScreen = () => {
                     </div>
                 )}
             </div>
+
+            <button className="btn btn-danger" onClick={handleDeleteNote}>Delete</button>
         </div>
     )
 }
 
-export default NoteScreen
+export default NoteScreen;
