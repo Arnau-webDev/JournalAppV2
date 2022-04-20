@@ -23,9 +23,6 @@ const JournalEntry = ({ id, title, body, date, url }) => {
     const bodyArr = body.split("");
     const maxLength = 120;
 
-    console.log(body.length);
-    console.log(bodyArr);
-
     return (
         <div className="journal__entry animate__animated animate__backInLeft animate__faster" onClick={handleSetActiveNote}>
             {
@@ -45,9 +42,12 @@ const JournalEntry = ({ id, title, body, date, url }) => {
             <div className="journal__entry-body">
                 <p className='journal__entry-title'>{title}</p>
                 {/* <p className='journal__entry-content'>{body}</p> */}
-                <p className='journal__entry-content'>{bodyArr.filter((bodyPart, bodyPartIndex) => {
-                    return bodyPart && bodyPartIndex < maxLength;
-                })}</p>
+                <p className='journal__entry-content'>
+                    {bodyArr.filter((bodyPart, bodyPartIndex) => {
+                        return bodyPart && bodyPartIndex < maxLength;
+                    })}
+                    {bodyArr.length !== 0 && "..."}
+                </p>
             </div>
 
             <div className="journal__entry-date-box">

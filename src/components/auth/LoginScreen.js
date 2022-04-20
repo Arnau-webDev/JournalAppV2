@@ -9,8 +9,8 @@ const LoginScreen = () => {
   const { loading } = useSelector(state => state.ui);
 
   const [formValues, setFormValues] = useState({
-    email: "journal2@gmail.com",
-    password: 123456
+    email: "testUserNoRegister@gmail.com",
+    password: "testUser12345"
   });
 
   const { email, password } = formValues;

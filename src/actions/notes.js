@@ -59,6 +59,12 @@ export const setNotes = (notes) => {
 
 export const startSaveNote = (note) => {
     return async (dispatch, getState) => {
+
+        if (note.id === "uG6pXkoZkKp6yDzb57O4") {
+            Swal.fire("Error", "This note cannot be updated for showcasing purposes", "error");
+            return
+        }
+
         const { uid } = getState().auth;
 
         const noteToFirestore = { ...note }
@@ -85,7 +91,13 @@ export const refreshNote = (id, note) => {
 
 export const startUploading = (file) => {
     return async (dispatch, getState) => {
+
         const { activeNote } = getState().notesInfo;
+
+        if (activeNote.id === "uG6pXkoZkKp6yDzb57O4") {
+            Swal.fire("Error", "This note cannot be updated for showcasing purposes", "error");
+            return
+        }
 
         Swal.fire({
             title: "Uploading...",

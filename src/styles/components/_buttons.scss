@@ -37,6 +37,11 @@
     background-color: #b53030e8;
     transition: all .3s ease;
 
+    &:disabled {
+        background-color: lighten($color: $primary, $amount: 15);
+        pointer-events: none;
+    }
+
     &:hover {
         background-color: darken($color: red, $amount: 10);
     }

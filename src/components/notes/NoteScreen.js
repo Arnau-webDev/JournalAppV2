@@ -13,6 +13,8 @@ const NoteScreen = () => {
 
     const activeId = useRef(activeNote.id);
 
+    // console.log(activeNote.id);
+
     useEffect(() => {
         if (activeId.current !== activeNote.id) {
             setFormValues(activeNote);
@@ -67,7 +69,7 @@ const NoteScreen = () => {
                 )}
             </div>
 
-            <button className="btn btn-danger" onClick={handleDeleteNote}>Delete</button>
+            <button className="btn btn-danger" onClick={handleDeleteNote} disabled={activeNote.id === "uG6pXkoZkKp6yDzb57O4"}>Delete</button>
         </div>
     )
 }
