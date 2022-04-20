@@ -21,19 +21,30 @@
 .journal__sidebar-navbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     h3 {
         font-weight: lighter;
+    }
+
+    i {
+        margin-right: 6px;
+    }
+
+    .logout button {
+        font-size: large;
+        padding: 4px;
     }
 }
 
 .journal__new-entry {
     display: flex;
+    width: 30%;
+    margin: 30px auto 0 auto;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 30px;
-    width: 100%;
     cursor: pointer;
     transition: color .3s ease;
 
@@ -77,8 +88,10 @@
 }
 
 .journal__entry-picture {
-    width: 75px;
+    width: 145px;
     height: 75px;
+    background-size: cover;
+    background-position: center center;
 }
 
 .journal__entry-body {

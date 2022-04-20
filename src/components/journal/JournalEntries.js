@@ -20,4 +20,4 @@ const JournalEntries = () => {
     )
 }
 
-export default JournalEntries
+export default JournalEntries;

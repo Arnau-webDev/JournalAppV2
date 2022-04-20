@@ -12,6 +12,7 @@ import { firebase } from '../firebase/firebase-config'
 import { useDispatch } from 'react-redux';
 import { login } from '../actions/auth';
 import { startLoadingNotes } from '../actions/notes';
+import LoadingScreen from '../components/loading/LoadingScreen';
 
 
 export const AppRouter = () => {
@@ -26,20 +27,20 @@ export const AppRouter = () => {
 
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
-        setChecking(false);
+        setTimeout(() => { setChecking(false); }, 500);
 
         setIsLoggedIn(true);
         dispatch(startLoadingNotes(user.uid));
 
       } else {
         setIsLoggedIn(false);
-        setChecking(false);
+        setTimeout(() => { setChecking(false); }, 500);
       }
     })
   }, [dispatch, setChecking, setIsLoggedIn]);
 
   if (checking) {
-    return (<h1>Loading...</h1>)
+    return <LoadingScreen />
   }
 
   return (

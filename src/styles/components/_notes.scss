@@ -44,6 +44,6 @@
 }
 
 .notes__image img {
-    box-shadow: 5px 5px $dark-grey;
-    height: 250px;
+    box-shadow: 5px 4px lighten($color: $dark-grey, $amount: 10);
+    height: 300px;
 }

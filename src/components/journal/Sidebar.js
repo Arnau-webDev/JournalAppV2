@@ -23,11 +23,14 @@ const Sidebar = () => {
         <aside className="journal__sidebar">
             <div className="journal__sidebar-navbar mt-5">
                 <h3>
-                    <i className="far fa-moon"></i>
-                    <span>{name}</span>
+                    <i className="fa-solid fa-user"></i>
+                    <span> {name}</span>
                 </h3>
 
-                <button className="btn" onClick={handleLogout}>Log Out</button>
+                <div className='logout'>
+                    <i className="fa-solid fa-person-walking-arrow-loop-left"></i>
+                    <button className="btn" onClick={handleLogout}>Log Out</button>
+                </div>
             </div>
 
             <div className="journal__new-entry" onClick={handleAddNewEntry}>
