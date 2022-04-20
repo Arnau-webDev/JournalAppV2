@@ -10,13 +10,14 @@ export const startNewNote = () => {
 
         const newNote = {
             title: "",
+            url: "",
             body: "",
             date: new Date().getTime()
         };
 
         const doc = await db.collection(`${uid}/journal/notes`).add(newNote);
 
-        console.log(doc);
+        // console.log(doc);
         dispatch(activeNote(doc.id, newNote));
         dispatch(addNewNoteStore(doc.id, newNote));
     }
@@ -60,7 +61,7 @@ export const setNotes = (notes) => {
 export const startSaveNote = (note) => {
     return async (dispatch, getState) => {
 
-        if (note.id === "uG6pXkoZkKp6yDzb57O4") {
+        if (note.id === "uG6pXkoZkKp6yDzb57O4" || note.id === "ic6hKu0ojvJWjN6v9Bn8" || note.id === "c9Hr9chGWiUHUB2oFi9l") {
             Swal.fire("Error", "This note cannot be updated for showcasing purposes", "error");
             return
         }
@@ -94,7 +95,7 @@ export const startUploading = (file) => {
 
         const { activeNote } = getState().notesInfo;
 
-        if (activeNote.id === "uG6pXkoZkKp6yDzb57O4") {
+        if (activeNote.id === "uG6pXkoZkKp6yDzb57O4" || activeNote.id === "ic6hKu0ojvJWjN6v9Bn8" || activeNote.id === "c9Hr9chGWiUHUB2oFi9l") {
             Swal.fire("Error", "This note cannot be updated for showcasing purposes", "error");
             return
         }

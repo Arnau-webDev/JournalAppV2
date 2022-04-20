@@ -12,8 +12,7 @@ const NoteScreen = () => {
     const { title, body } = formValues;
 
     const activeId = useRef(activeNote.id);
-
-    // console.log(activeNote.id);
+    const activeUrl = useRef(activeNote.url);
 
     useEffect(() => {
         if (activeId.current !== activeNote.id) {
@@ -21,7 +20,12 @@ const NoteScreen = () => {
             activeId.current = activeNote.id;
         };
 
-    }, [activeNote]);
+        if (activeNote.url !== "" && activeUrl.current !== activeNote.url) {
+            setFormValues(activeNote);
+            activeUrl.current = activeNote.url;
+        }
+
+    }, [activeNote, activeNote.url]);
 
     useEffect(() => {
         dispatch(activeNoteAction(activeNote.id, formValues));
@@ -69,7 +73,7 @@ const NoteScreen = () => {
                 )}
             </div>
 
-            <button className="btn btn-danger" onClick={handleDeleteNote} disabled={activeNote.id === "uG6pXkoZkKp6yDzb57O4"}>Delete</button>
+            <button className="btn btn-danger" onClick={handleDeleteNote} disabled={activeNote.id === "uG6pXkoZkKp6yDzb57O4" || activeNote.id === "ic6hKu0ojvJWjN6v9Bn8" || activeNote.id === "c9Hr9chGWiUHUB2oFi9l"}>Delete</button>
         </div>
     )
 }
